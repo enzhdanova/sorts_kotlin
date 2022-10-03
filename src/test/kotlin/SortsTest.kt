@@ -4,21 +4,37 @@ import org.junit.Test
 class SortsTest {
     @Test
     fun bubbleSortsDown() {
-        val result = sortBubble(intArrayOf(5, 4, 3, 2, 1))
-        val resultQuickSort = quickSort(intArrayOf(5, 4, 3, 2, 1))
-        assertArrayEquals(intArrayOf(1, 2, 3, 4, 5), result)
-        assertArrayEquals(intArrayOf(1, 2, 3, 4, 5), resultQuickSort)
+        val intArrayForSort = intArrayOf(5, 4, 3, 2, 1)
+        val resultIntArray = intArrayOf(1, 2, 3, 4, 5)
+
+        val result = sortBubble(intArrayForSort)
+        val resultQuickSort = quickSort(intArrayForSort, 0, intArrayForSort.size)
+
+        assertArrayEquals(resultIntArray, result)
+        assertArrayEquals(resultIntArray, resultQuickSort)
     }
 
     @Test
     fun bubbleSorts() {
-        val result = sortBubble(intArrayOf(4, 5, 3, 1, 2))
-        assertArrayEquals(intArrayOf(1, 2, 3, 4, 5), result)
+        val intArrayForSort = intArrayOf(4, 5, 3, 1, 2)
+        val resultIntArray = intArrayOf(1, 2, 3, 4, 5)
+
+        val result = sortBubble(intArrayForSort)
+        val resultQuickSort = quickSort(intArrayForSort, 0, intArrayForSort.size)
+
+        assertArrayEquals(resultIntArray, result)
+        assertArrayEquals(resultIntArray, resultQuickSort)
     }
 
     @Test
     fun bubbleSorts2() {
-        val result = sortBubble(intArrayOf(1, 1, 1, 1, 1))
-        assertArrayEquals(intArrayOf(1, 1, 1, 1, 1), result)
+        val intArrayForSort = intArrayOf(1, 1, 1, 1, 1)
+        val resultIntArray = intArrayOf(1, 1, 1, 1, 1)
+
+        val result = sortBubble(intArrayForSort)
+        val resultQuickSort = quickSort(intArrayForSort, 0, intArrayForSort.size)
+
+        assertArrayEquals(resultIntArray, result)
+        assertArrayEquals(resultIntArray, resultQuickSort)
     }
 }

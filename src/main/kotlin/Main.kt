@@ -1,4 +1,5 @@
 fun main(args: Array<String>) {
+    val array = Values.intArray.copyOf()
 }
 
 
@@ -17,6 +18,37 @@ fun sortBubble(array: IntArray): IntArray {
     return array
 }
 
-fun quickSort(intArrayOf: IntArray): IntArray {
-    return intArrayOf
+fun quickSort(array: IntArray, startIndex: Int, endIndex: Int): IntArray {
+    val indexMediana = startIndex + (endIndex - startIndex) / 2
+    val mediana = array[indexMediana]
+
+    var tmp = 0
+    var i = startIndex
+    var j = endIndex - 1
+
+    while (i < j) {
+        while (i <= indexMediana && array[i] <= mediana) {
+            i++
+        }
+
+        while (j >= indexMediana && array[j] >= mediana) {
+            j--
+        }
+
+        if (i < j) {
+            tmp = array[i]
+            array[i] = array[j]
+            array[j] = tmp
+        }
+    }
+
+    if (indexMediana - startIndex> 1) {
+        quickSort(array, startIndex, indexMediana - 1)
+    }
+
+    if (endIndex - indexMediana > 1) {
+        quickSort(array, indexMediana, endIndex)
+    }
+
+    return array
 }
