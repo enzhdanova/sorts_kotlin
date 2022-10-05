@@ -73,13 +73,18 @@ class SortsTest {
         val intArrayForSort3 = intArrayOf(1, 1, 1, 1, 1)
         val resultIntArray3 = intArrayOf(1, 1, 1, 1, 1)
 
+        val intArrayForSort4 = intArrayOf(500, 300, 30, 70, 150, 20, 10)
+        val resultIntArray4 = intArrayOf(10, 20, 30, 70, 150, 300, 500)
+
         val result = heapSort(intArrayForSort)
         val result2 = heapSort(intArrayForSort2)
         val result3 = heapSort(intArrayForSort3)
+        val result4 = heapSort(intArrayForSort4)
 
         assertArrayEquals(resultIntArray, result)
         assertArrayEquals(resultIntArray2, result2)
         assertArrayEquals(resultIntArray3, result3)
+        assertArrayEquals(resultIntArray4, result4)
     }
 
     @Test
@@ -108,16 +113,15 @@ class SortsTest {
 
     @Test
     fun getHeap(){
-        val intArrayForSort = intArrayOf(24, 31, 15, 20,52, 6)
-        val resultIntArray = intArrayOf(52, 24, 15, 20, 31, 6)
+        val intArrayForSort = intArrayOf(5, 4, 3, 2, 1)
+        val resultIntArray = intArrayOf(5, 4, 3, 2, 1)
 
-        val resultHeap = getHeap(intArrayForSort, intArrayForSort.size)
+        for (i in intArrayForSort.size / 2  - 1 downTo 0) {
+            val resultHeap = getHeap(intArrayForSort, intArrayForSort.size, i)
+            assertArrayEquals(resultIntArray, resultHeap)
+        }
+
+        val resultHeap = getHeap(intArrayForSort, intArrayForSort.size, 0)
         assertArrayEquals(resultIntArray, resultHeap)
-
-        val intArrayForSort2 = intArrayOf(5, 4, 3, 2, 1)
-        val resultIntArray2 = intArrayOf(5, 4, 3, 2, 1)
-
-        val resultHeap2 = getHeap(intArrayForSort2, intArrayForSort.size)
-        assertArrayEquals(resultIntArray2, resultHeap2)
     }
 }

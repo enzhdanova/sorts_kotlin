@@ -99,38 +99,43 @@ fun merge(array1: IntArray, array2: IntArray): IntArray {
 }
 
 
-fun getHeap(array: IntArray, heapLen : Int): IntArray {
-    val k = array.size / 2 - 1
+fun getHeap(array: IntArray, heapLen: Int, indexNowNode: Int): IntArray {
+    var indexMax = indexNowNode
+    val swap: Int
 
-    var tmp: Int
+    val leftChild = 2 * indexNowNode + 1
+    val rightChild = 2 * indexNowNode + 2
+    if (leftChild < heapLen && array[indexMax] < array[leftChild]) {
+        indexMax = leftChild
+    }
 
-    for (i in k downTo 0) {
-        val leftLeaf = 2 * i + 1
-        val rightLeaf = 2 * i + 2
-        if (leftLeaf < heapLen  && array[i] < array[leftLeaf]) {
-            tmp = array[i]
-            array[i] = array[leftLeaf]
-            array[leftLeaf] = tmp
-        }
+    if (rightChild < heapLen && array[indexMax] < array[rightChild]) {
+        indexMax = rightChild
+    }
 
-        if (rightLeaf < heapLen  && array[i] < array[rightLeaf]) {
-            tmp = array[i]
-            array[i] = array[rightLeaf]
-            array[rightLeaf] = tmp
-        }
+    if (indexMax != indexNowNode) {
+        swap = array[indexNowNode]
+        array[indexNowNode] = array[indexMax]
+        array[indexMax] = swap
+
+        getHeap(array, heapLen, indexMax)
     }
 
     return array
 }
 
-fun heapSort(array: IntArray) : IntArray {
+fun heapSort(array: IntArray): IntArray {
 
-    for (i in array.size - 1  downTo 1) {
-        getHeap(array, i + 1)
+    for (i in array.size / 2  - 1 downTo 0) {
+        getHeap(array, array.size, i)
+    }
 
+    for (i in array.size - 1 downTo 0) {
         val tmp = array[0]
         array[0] = array[i]
         array[i] = tmp
+
+        getHeap(array, i, 0)
     }
 
 
